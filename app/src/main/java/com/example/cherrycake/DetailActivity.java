@@ -1,5 +1,7 @@
 package com.example.cherrycake;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -17,7 +19,7 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvNameDetailC,tvPriceDetailC,tvDescriptionC,tvQuantityC;
     ImageView ivImageDetailC;
     int count = 0;
-    ImageButton imageButtonBack;
+    ImageButton imageButtonBack, imageButtonShare;
     ToggleButton toggleButtonFavourite;
 
     @Override
@@ -36,10 +38,11 @@ public class DetailActivity extends AppCompatActivity {
         tvQuantityC = (TextView) findViewById(R.id.tvQuantity);
 
         imageButtonBack = findViewById(R.id.ibBack);
+        imageButtonShare = findViewById(R.id.ibShare);
 
         toggleButtonFavourite = findViewById(R.id.btnFavourite);
 
-        //
+        //load dữ liệu
 
         String ten = getIntent().getStringExtra("ten");
         tvNameDetailC.setText(ten);
@@ -51,7 +54,15 @@ public class DetailActivity extends AppCompatActivity {
 
         Glide.with(this).load(anh).into(ivImageDetailC);
 
+        //
+
+
+        //nút back
         imageButtonBack.setOnClickListener(view -> finish());
+        //
+
+        //nút share
+        imageButtonShare.setOnClickListener(view -> {ShareApp(DetailActivity.this,ten);});
     }
 
     public void increment(View v) {
@@ -75,5 +86,14 @@ public class DetailActivity extends AppCompatActivity {
         else {
             Toast.makeText(this,"Hủy yêu thích thành công",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void ShareApp(Context context,String ten) {
+
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_SEND);
+        i.putExtra(Intent.EXTRA_TEXT,ten);
+        i.setType("text/plain");
+        context.startActivity(i);
     }
 }
