@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VoucherActivity">
+
+<!--    layout phủ màu hường của trang voucher -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@drawable/khungbogocduoi"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="600dp">
+
+
+<!--    layout phần header của trang voucher -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutVoucherHeader"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:drawableLeft="@drawable/baseline_arrow_back_24"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <TextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MÃ GIẢM GIÁ"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--    layout phần Tìm Kiếm mã voucher-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutFindVoucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layoutVoucherHeader"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+            <FrameLayout
+                android:id="@+id/framOfLayoutFindVoucher"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toRightOf="parent"
+                android:background="@drawable/khungcartitem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#AEC2B6"
+                    android:text="Nhập mã Voucher..."
+                    android:background="@null"/>
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutVoucherContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layoutFindVoucher"
+            app:layout_constraintLeft_toLeftOf="parent">
+
+<!--            voucher 1 -->
+            <RelativeLayout
+                android:id="@+id/voucherItem1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@drawable/khungtimmavoucher"
+                android:layout_marginTop="32dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/ivVoucherItem1"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/voucher25" />
+
+                <TextView
+                    android:id="@+id/tvVoucherItem1"
+                    android:layout_toRightOf="@id/ivVoucherItem1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginLeft="16dp"
+                    android:text="Voucher giảm giá 25%"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ivVoucherItem1"
+                    android:layout_below="@id/tvVoucherItem1"
+                    android:layout_marginLeft="16dp"
+                    android:text="Áp dụng cho đơn hàng từ 150k"/>
+
+            </RelativeLayout>
+
+<!--            voucher 2-->
+            <RelativeLayout
+                android:id="@+id/voucherItem2"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/khungtimmavoucher"
+                app:layout_constraintTop_toBottomOf="@id/voucherItem1"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivVoucherItem2"
+                    android:src="@drawable/voucher50"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"/>
+
+                <TextView
+                    android:id="@+id/tvVoucherItem2"
+                    android:layout_toRightOf="@id/ivVoucherItem2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Voucher giảm giá 50%"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ivVoucherItem2"
+                    android:layout_below="@id/tvVoucherItem2"
+                    android:layout_marginLeft="16dp"
+                    android:text="Áp dụng cho đơn hàng từ 500k"/>
+            </RelativeLayout>
+
+<!--            voucher 3-->
+            <RelativeLayout
+                android:id="@+id/voucherItem3"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/khungtimmavoucher"
+                app:layout_constraintTop_toBottomOf="@id/voucherItem2"
+                app:layout_constraintLeft_toLeftOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivVoucherItem3"
+                    android:src="@drawable/voucher50"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"/>
+                <TextView
+                    android:id="@+id/tvVoucherItem3"
+                    android:layout_toRightOf="@id/ivVoucherItem3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Voucher giảm giá 50%"
+                    android:textSize="24dp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/ivVoucherItem3"
+                    android:layout_below="@id/tvVoucherItem3"
+                    android:layout_marginLeft="16dp"
+                    android:text="Áp dụng cho đơn hàng từ 500k"/>
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--    layout Footer của trang Voucher -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <TextView
+            android:id="@+id/btnApplyVoucher"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:background="@drawable/khungbo4goc"
+            android:text="Áp dụng"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
