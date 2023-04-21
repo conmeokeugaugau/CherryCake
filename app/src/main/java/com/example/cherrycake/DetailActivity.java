@@ -89,7 +89,6 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void ShareApp(Context context,String ten) {
-        String s = "text";
         Intent i = new Intent();
         i.setAction(Intent.ACTION_SEND);
         i.putExtra(Intent.EXTRA_TEXT,ten);
