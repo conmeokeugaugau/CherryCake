@@ -1,18 +1,27 @@
 package com.example.cherrycake;
 
 public class Product {
-    String name,description,category,image;
+    String user, name, description, category, image;
     int price;
 
     public Product() {
     }
 
-    public Product(String name, String description, String category, String image, int price) {
+    public Product(String user, String name, String description, String category, String image, int price) {
+        this.user = user;
         this.name = name;
         this.description = description;
         this.category = category;
         this.image = image;
         this.price = price;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getName() {

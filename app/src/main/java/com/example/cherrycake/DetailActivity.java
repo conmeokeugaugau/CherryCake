@@ -14,6 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class DetailActivity extends AppCompatActivity {
 
     TextView tvNameDetailC,tvPriceDetailC,tvDescriptionC,tvQuantityC;
@@ -44,12 +48,18 @@ public class DetailActivity extends AppCompatActivity {
 
         //load dữ liệu
 
+        //load tên
         String ten = getIntent().getStringExtra("ten");
         tvNameDetailC.setText(ten);
-        int gia = getIntent().getIntExtra("gia",0);
-        tvPriceDetailC.setText(gia + " VNĐ");
+
+        //load giá ban đầu (giá trị mặc định là 1)
+        changePrice(1);
+
+        //load mô tả
         String mota = getIntent().getStringExtra("mota");
         tvDescriptionC.setText(mota);
+
+        //load ảnh
         String anh = getIntent().getStringExtra("anh");
 
         Glide.with(this).load(anh).into(ivImageDetailC);
@@ -65,22 +75,38 @@ public class DetailActivity extends AppCompatActivity {
         imageButtonShare.setOnClickListener(view -> {ShareApp(DetailActivity.this,ten);});
     }
 
-    public void increment(View v) {
-        count++;
-        tvQuantityC.setText("" + count);
+    //hàm thay đổi đơn vị tiền tệ và updat giá
+    public void changePrice(int quantity) {
+        int gia = quantity * getIntent().getIntExtra("gia",0);
+        String giatien = NumberFormat.getNumberInstance(Locale.US).format(gia);
+        tvPriceDetailC.setText(giatien + " VNĐ");
     }
 
+    //hàm tăng số lượng
+    public void increment(View v) {
+        count++;
+        changePrice(count);
+    }
+
+    //hàm giảm số lượng
     public void decrement(View v) {
+        //nếu nhập số lượng nhỏ hơn bằng 1 thì set mặt định số lượng bằng 1
         if (count <= 1) {
             count = 1;
+            changePrice(count);
         } else {
             count--;
+            changePrice(count);
         }
         tvQuantityC.setText("" + count);
     }
 
+    //hàm bấm nút yêu thích
     public void onToggleButton(View v){
         if(toggleButtonFavourite.isChecked()) {
+
+
+
             Toast.makeText(this,"Thêm vào danh sách yêu thích thành công",Toast.LENGTH_SHORT).show();
         }
         else {
@@ -88,6 +114,7 @@ public class DetailActivity extends AppCompatActivity {
         }
     }
 
+    //hàm nút share app
     private void ShareApp(Context context,String ten) {
         Intent i = new Intent();
         i.setAction(Intent.ACTION_SEND);
