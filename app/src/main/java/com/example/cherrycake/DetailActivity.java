@@ -2,6 +2,7 @@ package com.example.cherrycake;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -86,6 +87,7 @@ public class DetailActivity extends AppCompatActivity {
     public void increment(View v) {
         count++;
         changePrice(count);
+        tvQuantityC.setText("" + count);
     }
 
     //hàm giảm số lượng
@@ -103,15 +105,7 @@ public class DetailActivity extends AppCompatActivity {
 
     //hàm bấm nút yêu thích
     public void onToggleButton(View v){
-        if(toggleButtonFavourite.isChecked()) {
-
-
-
-            Toast.makeText(this,"Thêm vào danh sách yêu thích thành công",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(this,"Hủy yêu thích thành công",Toast.LENGTH_SHORT).show();
-        }
+        toggleButtonFavourite.setChecked(true);
     }
 
     //hàm nút share app
