@@ -32,12 +32,13 @@ import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
-public class HomeActivity extends AppCompatActivity implements ProductAdapter.ProductCallback {
+public class HomeActivity extends AppCompatActivity implements ProductAdapter.ProductCallback, ProductFavouriteAdapter.ProductCallback {
     DrawerLayout mdrawLo;
 
-    RecyclerView rvListC;
+    RecyclerView rvListC,rvListFavouriteC;
     ArrayList<Product> lstProduct;
     ProductAdapter productAdapter;
+    ProductFavouriteAdapter productFavouriteAdapter;
 
     ImageButton mimgbtImage, mimgbtaboutus, mimgbtfind, mimgbtcart, mimgbtdirect, mimgbtphone;
 
@@ -60,7 +61,9 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_main);
+
         rvListC = findViewById(R.id.rcvRcmItem);
+        rvListFavouriteC = findViewById(R.id.rcvFavouItem);
 
         getSupportActionBar().hide();
 
@@ -285,12 +288,18 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
             }
         });
 
-        //
-        LoadData();
+        //load data recommend
+        LoadDataRecommend();
         productAdapter = new ProductAdapter(lstProduct,this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,false);
         rvListC.setAdapter(productAdapter);
         rvListC.setLayoutManager(linearLayoutManager);
+
+        //load data favourite
+        LoadDataFavourite();
+        productFavouriteAdapter = new ProductFavouriteAdapter(lstProduct, this);
+        rvListFavouriteC.setAdapter(productFavouriteAdapter);
+        //rvListFavouriteC.setLayoutManager(linearLayoutManager);
         //
 
         mcroissant.setOnClickListener(new View.OnClickListener() {
@@ -409,8 +418,8 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
     }
 
 
-    //
-    void LoadData() {
+    //code load dữ liệu item recommend
+    void LoadDataRecommend() {
         lstProduct =new ArrayList<>();
         FirebaseFirestore.getInstance()
                 .collection("PRODUCTS")
@@ -422,6 +431,24 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
                         for(DocumentSnapshot ds:dsList) {
                             Product product = ds.toObject(Product.class);
                             productAdapter.add(product);
+                        }
+                    }
+                });
+    }
+
+    //code load dữ liệu item favourite
+    void LoadDataFavourite() {
+        lstProduct =new ArrayList<>();
+        FirebaseFirestore.getInstance()
+                .collection("PRODUCTS")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        List<DocumentSnapshot> dsList = queryDocumentSnapshots.getDocuments();
+                        for(DocumentSnapshot ds:dsList) {
+                            Product product = ds.toObject(Product.class);
+                            productFavouriteAdapter.add(product);
                         }
                     }
                 });
