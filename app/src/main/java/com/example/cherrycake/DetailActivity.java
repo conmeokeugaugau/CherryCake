@@ -105,7 +105,11 @@ public class DetailActivity extends AppCompatActivity {
 
     //hàm bấm nút yêu thích
     public void onToggleButton(View v){
-        toggleButtonFavourite.setChecked(true);
+        if(toggleButtonFavourite.isChecked()) {
+            Toast.makeText(DetailActivity.this,"Thêm vào danh sách yêu thích",Toast.LENGTH_SHORT).show();
+        } else{
+            Toast.makeText(DetailActivity.this,"Xóa khỏi danh sách yêu thích",Toast.LENGTH_SHORT).show();
+        };
     }
 
     //hàm nút share app
