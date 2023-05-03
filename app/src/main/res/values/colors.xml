@@ -9,16 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pinklogo">#EE3266</color>
 
-    <color name="red">#FF0000</color>
-    <color name="orange">#FF9800</color>
-
     <color name="cake">#FD4879</color>
     <color name="candy">#47DFC4</color>
     <color name="cupcake">#4DA1E2</color>
     <color name="croissant">#FED056</color>
     <color name="bgroundnotselect">#FBF2F7</color>
     <color name="texthome">#5E4386</color>
-
-    <color name="textwhenclick">#FD4879</color>
 
 </resources>

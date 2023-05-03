@@ -20,9 +20,7 @@ public class Product {
         return user;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
+    public void setUser(String user) { this.user = user; }
 
     public String getName() {
         return name;

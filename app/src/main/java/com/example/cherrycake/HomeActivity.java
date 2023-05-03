@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,10 +36,13 @@ import kotlin.jvm.functions.Function1;
 public class HomeActivity extends AppCompatActivity implements ProductAdapter.ProductCallback, ProductFavouriteAdapter.ProductCallback {
     DrawerLayout mdrawLo;
 
+
+
     RecyclerView rvListC,rvListFavouriteC;
     ArrayList<Product> lstProduct;
     ProductAdapter productAdapter;
     ProductFavouriteAdapter productFavouriteAdapter;
+
 
     ImageButton mimgbtImage, mimgbtaboutus, mimgbtfind, mimgbtcart, mimgbtdirect, mimgbtphone;
 
@@ -296,10 +300,10 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
         rvListC.setLayoutManager(linearLayoutManager);
 
         //load data favourite
+
         LoadDataFavourite();
         productFavouriteAdapter = new ProductFavouriteAdapter(lstProduct, this);
         rvListFavouriteC.setAdapter(productFavouriteAdapter);
-        //rvListFavouriteC.setLayoutManager(linearLayoutManager);
         //
 
         mcroissant.setOnClickListener(new View.OnClickListener() {
@@ -440,7 +444,7 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
     void LoadDataFavourite() {
         lstProduct =new ArrayList<>();
         FirebaseFirestore.getInstance()
-                .collection("PRODUCTS")
+                .collection("FAVOURITES")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -455,8 +459,9 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
     }
 
     @Override
-    public void onItemClick(String ten, int gia, String mota, String anh) {
+    public void onItemClick(String nguoidung,String ten, int gia, String mota, String anh) {
         Intent i = new Intent(this, DetailActivity.class);
+        i.putExtra("nguoidung",nguoidung);
         i.putExtra("ten",ten);
         i.putExtra("mota",mota);
         i.putExtra("gia",gia);
