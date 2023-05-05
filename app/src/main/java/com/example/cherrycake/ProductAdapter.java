@@ -47,7 +47,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Glide.with(context).load(item.getImage())
                 .into(holder.imageViewProduct);
         // lấy sự kiện
-        holder.itemView.setOnClickListener(view -> productCallBack.onItemClick(item.getUser(),item.getName(),item.getPrice(),item.getDescription(),item.getImage()));
+        holder.itemView.setOnClickListener(view -> productCallBack.onItemClick(item.getUser(),item.getName(),item.getPrice(),item.getDescription(),item.getCategory(),item.getImage()));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public interface ProductCallback {
-        void onItemClick(String nguoidung,String ten,int gia,String mota,String anh);
+        void onItemClick(String nguoidung,String ten,int gia,String mota,String loai,String anh);
     }
     public void add(Product product) {
         lstProduct.add(product);

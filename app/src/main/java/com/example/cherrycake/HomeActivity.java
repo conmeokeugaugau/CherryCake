@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -442,9 +443,11 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
 
     //code load dữ liệu item favourite
     void LoadDataFavourite() {
+        String nguoidung = FirebaseAuth.getInstance().getCurrentUser().getUid();
         lstProduct =new ArrayList<>();
         FirebaseFirestore.getInstance()
                 .collection("FAVOURITES")
+                .whereEqualTo("user",nguoidung)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -459,12 +462,13 @@ public class HomeActivity extends AppCompatActivity implements ProductAdapter.Pr
     }
 
     @Override
-    public void onItemClick(String nguoidung,String ten, int gia, String mota, String anh) {
+    public void onItemClick(String nguoidung,String ten, int gia, String mota, String loai, String anh) {
         Intent i = new Intent(this, DetailActivity.class);
         i.putExtra("nguoidung",nguoidung);
         i.putExtra("ten",ten);
         i.putExtra("mota",mota);
         i.putExtra("gia",gia);
+        i.putExtra("loai",loai);
         i.putExtra("anh",anh);
         startActivity(i);
     }

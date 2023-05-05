@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -65,7 +66,7 @@ public class DetailActivity extends AppCompatActivity {
 
 
         //load user
-
+        String user = FirebaseAuth.getInstance().getCurrentUser().getUid();
         //load tên
         String ten = getIntent().getStringExtra("ten");
         tvNameDetailC.setText(ten);
@@ -73,11 +74,15 @@ public class DetailActivity extends AppCompatActivity {
 
         //load giá ban đầu (giá trị mặc định là 1)
         changePrice(1);
+        int price = getIntent().getIntExtra("gia",0);
 
         //load mô tả
         String mota = getIntent().getStringExtra("mota");
         tvDescriptionC.setText(mota);
         product.setDescription(mota);
+
+        //load phân loại
+        String loai = getIntent().getStringExtra("loai");
 
         //load ảnh
         String anh = getIntent().getStringExtra("anh");
@@ -107,6 +112,7 @@ public class DetailActivity extends AppCompatActivity {
         // Nếu có dữ liệu trong đây thì tiến hành checkbox                //
         // Không có thì tiếp tục xuống dưới                               //
         favouriteList.whereEqualTo("image",anh)
+                .whereEqualTo("user",user)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -124,7 +130,7 @@ public class DetailActivity extends AppCompatActivity {
                                     } else {
                                         Toast.makeText(DetailActivity.this,"Thêm vào danh sách yêu thích",Toast.LENGTH_SHORT).show();
                                         checkBoxFavourite.setBackgroundResource(R.drawable.ic_favourite2);
-                                        addFavourite(ten,1,mota,anh);
+                                        addFavourite(user,ten,price,mota,loai,anh);
                                     }
                                 }
                             });
@@ -143,7 +149,7 @@ public class DetailActivity extends AppCompatActivity {
                 if(b) {
                     Toast.makeText(DetailActivity.this,"Thêm vào danh sách yêu thích",Toast.LENGTH_SHORT).show();
                     checkBoxFavourite.setBackgroundResource(R.drawable.ic_favourite2);
-                    addFavourite(ten,1,mota,anh);
+                    addFavourite(user,ten,price,mota,loai,anh);
                     //
                 } else {
                     Toast.makeText(DetailActivity.this,"Xóa khỏi danh sách yêu thích",Toast.LENGTH_SHORT).show();
@@ -159,8 +165,8 @@ public class DetailActivity extends AppCompatActivity {
 
 
     // Thêm vào danh sách yêu thích //
-    public void addFavourite(String ten,int gia,String mota,String anh) {
-        product = new Product(null,ten,mota,null,anh,gia);
+    public void addFavourite(String nguoidung,String ten,int gia,String mota,String loai,String anh) {
+        product = new Product(nguoidung,ten,mota,loai,anh,gia);
         favouriteList.add(product);
     }
     // Xóa khỏi danh sách yêu thích //
