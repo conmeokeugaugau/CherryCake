@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -37,6 +38,7 @@ public class DetailActivity extends AppCompatActivity {
     int count = 0;
     ImageButton imageButtonBack, imageButtonShare;
     CheckBox checkBoxFavourite;
+    RadioButton radioButtonSizeS, radioButtonSizeM, radioButtonSizeL, radioButtonSizeXL;
     private CollectionReference favouriteList = FirebaseFirestore.getInstance().collection("FAVOURITES");
     Product product = new Product();
     //
@@ -62,8 +64,8 @@ public class DetailActivity extends AppCompatActivity {
 
         checkBoxFavourite = findViewById(R.id.btnFavourite);
 
-        // Load dữ liệu //
 
+        // Load dữ liệu //
 
         //load user
         String user = FirebaseAuth.getInstance().getCurrentUser().getUid();

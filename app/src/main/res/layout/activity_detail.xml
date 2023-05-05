@@ -52,6 +52,7 @@
         app:layout_constraintHorizontal_bias="0.0"/>
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="210dp"
         android:layout_height="210dp"
         android:layout_marginTop="95dp"
@@ -177,6 +178,72 @@
         app:layout_constraintTop_toTopOf="@id/btnMinus"
         app:layout_constraintBottom_toBottomOf="@id/btnMinus"/>
 
+    <RadioGroup
+        android:id="@+id/rgSize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@id/rbSizeS"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMinus">
+
+        <RadioButton
+            android:id="@+id/rbSizeS"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_radio_group"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:text="  S"
+            android:textColor="@drawable/ic_color_radio_group"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbSizeM"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_radio_group"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:text=" M"
+            android:textColor="@drawable/ic_color_radio_group"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbSizeL"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_radio_group"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:text="  L"
+            android:textColor="@drawable/ic_color_radio_group"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbSizeXL"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_radio_group"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:text=" XL"
+            android:textColor="@drawable/ic_color_radio_group"
+            android:textStyle="bold" />
+
+    </RadioGroup>
     <TextView
         android:id="@+id/tvDetail"
         android:layout_width="0dp"
@@ -188,7 +255,7 @@
         app:layout_constraintBottom_toTopOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvNameDetail"
-        app:layout_constraintTop_toBottomOf="@id/btnMinus" />
+        app:layout_constraintTop_toBottomOf="@id/rgSize" />
 
     <ImageButton
         android:id="@+id/btnBack"

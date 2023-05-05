@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class ProductFavouriteAdapter extends RecyclerView.Adapter<ProductFavouriteAdapter.ProductViewHolder> {
     ArrayList<Product> lstProduct;
@@ -43,7 +45,8 @@ public class ProductFavouriteAdapter extends RecyclerView.Adapter<ProductFavouri
         Product item = lstProduct.get(position);
         // gán item  của view
         holder.textViewNameProduct.setText(item.getName());
-        holder.textViewPriceProduct.setText(item.getPrice()+"");
+        String price = NumberFormat.getNumberInstance(Locale.US).format(item.getPrice());
+        holder.textViewPriceProduct.setText(price + " VNĐ");
         Glide.with(context).load(item.getImage())
                 .into(holder.imageViewProduct);
         // lấy sự kiện
