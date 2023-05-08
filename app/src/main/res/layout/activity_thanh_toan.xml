@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-<!--        hàng 1-->
+<!--      trạng thái hàng 1-->
         <LinearLayout
         android:id="@+id/layoutPayCheck1"
         app:layout_constraintTop_toTopOf="parent"
@@ -78,7 +78,7 @@
 
     </LinearLayout>
 
-<!--        hàng 2-->
+<!--       trạng thái hàng 2-->
         <LinearLayout
             android:id="@+id/layoutPayCheck2"
             app:layout_constraintTop_toBottomOf="@id/layoutPayCheck1"
@@ -106,7 +106,7 @@
                 android:layout_marginLeft="16dp"/>
         </LinearLayout>
 
-<!--        hàng 3-->
+<!--       trạng thái hàng 3-->
         <LinearLayout
             android:id="@+id/layoutPayCheck3"
             app:layout_constraintTop_toBottomOf="@id/layoutPayCheck2"
@@ -130,9 +130,10 @@
         app:layout_constraintTop_toBottomOf="@id/layoutPayState"
         app:layout_constraintLeft_toLeftOf="parent"
         android:padding="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/khung"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="400dp">
 
         <TextView
             android:id="@+id/tvHeaderOfPayContent"
@@ -147,71 +148,23 @@
 <!--        layout chứa phần ITEM1 của content-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutPayContentItem1"
-            android:layout_width="wrap_content"
+            android:layout_width="350dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/tvHeaderOfPayContent"
-            app:layout_constraintLeft_toLeftOf="parent">
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
 
-            <ImageView
-                android:id="@+id/ivOfPayContent"
-                app:layout_constraintTop_toTopOf="parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvThanhToan"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:src="@drawable/banh1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"/>
-
-            <TextView
-                android:id="@+id/tvOfPayContentItem1"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/ivOfPayContent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Melted Cake ngon ngất ngây"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:layout_marginTop="32dp"/>
-
-            <TextView
-                android:id="@+id/tvPriceOfPayContentItem1"
-                app:layout_constraintTop_toBottomOf="@id/tvOfPayContentItem1"
-                app:layout_constraintLeft_toRightOf="@+id/ivOfPayContent"
-                android:text="300.000"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                app:layout_constraintTop_toBottomOf="@id/tvPriceOfPayContentItem1"
-                app:layout_constraintLeft_toRightOf="@id/ivOfPayContent"
-                android:text="Số lượng: 1"
-                android:layout_marginTop="32dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                android:id="@+id/tvBottomOfPayContentItem1"
-                app:layout_constraintTop_toBottomOf="@id/ivOfPayContent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:text="Tổng đơn hàng"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"/>
-
-            <TextView
-                android:id="@+id/tvToTalPriceOfPayContentItem1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="64dp"
-                android:text="300.000"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_bias="0.604"
-                app:layout_constraintLeft_toRightOf="@id/tvBottomOfPayContentItem1"
-                app:layout_constraintRight_toRightOf="parent" />
+                tools:listitem="@layout/thanhtoan_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -262,32 +215,32 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 <!--        layout chứa phần ITEM3 content-->
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/layoutPayContentItem3"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/layoutPayContentItem2"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvOfPayContentItem3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Tổng tiền hàng"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tvPriceOfPayContentItem3"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:layout_marginRight="57dp"-->
+<!--                android:text="300.000" />-->
+<!--        </RelativeLayout>-->
+
         <RelativeLayout
             android:id="@+id/layoutPayContentItem3"
             app:layout_constraintTop_toBottomOf="@id/layoutPayContentItem2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tvOfPayContentItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Tổng tiền hàng"/>
-
-            <TextView
-                android:id="@+id/tvPriceOfPayContentItem3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="57dp"
-                android:text="300.000" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/layoutPayContentItem4"
-            app:layout_constraintTop_toBottomOf="@id/layoutPayContentItem3"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginTop="8dp"
             android:layout_width="match_parent"
@@ -354,17 +307,16 @@
 
         <TextView
             android:id="@+id/tvPriceOfPayFooter"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="32dp"
             android:layout_marginTop="8dp"
-            android:text="300.000"
+            android:layout_marginRight="28dp"
+            android:textColor="@color/black"
             android:textSize="24sp"
-            android:textColor="@color/black"/>
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnPay"
             android:layout_width="300dp"
             android:layout_height="50dp"

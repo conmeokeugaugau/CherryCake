@@ -16,4 +16,6 @@
     <color name="bgroundnotselect">#FBF2F7</color>
     <color name="texthome">#5E4386</color>
 
+    <color name="textwhenclick">#FD4879</color>
+
 </resources>

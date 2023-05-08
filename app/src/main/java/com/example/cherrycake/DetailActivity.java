@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
@@ -16,18 +17,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.Locale;
 
 public class DetailActivity extends AppCompatActivity {
@@ -36,6 +42,15 @@ public class DetailActivity extends AppCompatActivity {
     TextView tvNameDetailC,tvPriceDetailC,tvDescriptionC,tvQuantityC;
     ImageView ivImageDetailC;
     int count = 0;
+
+    // tong gia
+    int totalPrice = 0;
+
+    Button btnOrder;
+
+    // firebase
+    FirebaseAuth auth;
+    private FirebaseFirestore firestore;
     ImageButton imageButtonBack, imageButtonShare;
     CheckBox checkBoxFavourite;
     RadioButton radioButtonSizeS, radioButtonSizeM, radioButtonSizeL, radioButtonSizeXL;
@@ -48,7 +63,12 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        getSupportActionBar().hide(); // Ẩn ActionBar //
+
+        // firebase
+        firestore = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+//        getSupportActionBar().hide(); // Ẩn ActionBar //
 
         // Ánh xạ //
         tvNameDetailC = findViewById(R.id.tvNameDetail);
@@ -61,6 +81,8 @@ public class DetailActivity extends AppCompatActivity {
 
         imageButtonBack = findViewById(R.id.ibBack);
         imageButtonShare = findViewById(R.id.ibShare);
+
+        btnOrder = findViewById(R.id.btnOrder);
 
         checkBoxFavourite = findViewById(R.id.btnFavourite);
 
@@ -92,6 +114,14 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(this).load(anh).into(ivImageDetailC);
         product.setImage(anh);
         //
+
+        // khi nhấn nút thêm vào giỏ hàng
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToCart();
+            }
+        });
 
 
         //nút back
@@ -164,6 +194,29 @@ public class DetailActivity extends AppCompatActivity {
 
     }
 
+    private void addToCart() {
+        final HashMap<String,Object> cartMap = new HashMap<>();
+
+//        lấy hình ảnh khi người dùng click chọn sản phẩm
+        String anh = getIntent().getStringExtra("anh");
+        totalPrice = getTotalPrice();
+
+        cartMap.put("name", tvNameDetailC.getText().toString());
+        cartMap.put("price", totalPrice);
+        cartMap.put("totalQuantity",tvQuantityC.getText().toString());
+        cartMap.put("anh", anh);  // thêm field hình ảnh để lưu trữ trong firebase
+
+        firestore.collection("USERS").document(auth.getCurrentUser().getUid())
+                .collection("AddToCart").add(cartMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+//                        Intent i = new Intent(DetailActivity.this, GIoHangActivity.class);
+//                        startActivity(i);
+                        Toast.makeText(DetailActivity.this, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
+    }
 
 
     // Thêm vào danh sách yêu thích //
@@ -223,5 +276,11 @@ public class DetailActivity extends AppCompatActivity {
         i.putExtra(Intent.EXTRA_TEXT,ten);
         i.setType("text/plain");
         context.startActivity(i);
+    }
+
+    // hàm dùng để lấy totalprice
+    public int getTotalPrice() {
+        totalPrice = count * getIntent().getIntExtra("gia",0);
+        return totalPrice;
     }
 }

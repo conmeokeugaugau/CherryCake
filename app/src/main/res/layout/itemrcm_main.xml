@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="76dp"
+    android:layout_width="210dp"
+    android:layout_height="70dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginRight="25dp">
     <ImageView
         android:id="@+id/itrcmBgr"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="70dp"
         android:background="@drawable/roundnotselect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
@@ -16,17 +16,19 @@
         android:background="@color/candy"
         android:layout_width="80dp"
         android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
         app:layout_constraintLeft_toLeftOf="@id/itrcmBgr"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@id/itrcmBgr" />
     <TextView
         android:id="@+id/itrcmName"
         android:text="Hoa cúc"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="35dp"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
+        android:layout_marginLeft="10dp"
         app:layout_constraintTop_toTopOf="@id/itrcmBgr"
         app:layout_constraintLeft_toRightOf="@id/itrcmPict"/>
     <TextView
@@ -36,9 +38,9 @@
         android:textColor="@color/cake"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        app:layout_constraintTop_toBottomOf="@id/itrcmName"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/itrcmPict"/>
     <ImageButton
         android:id="@+id/itrcmAdd"

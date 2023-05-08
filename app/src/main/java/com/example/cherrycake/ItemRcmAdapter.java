@@ -12,13 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ItemRcmAdapter extends RecyclerView.Adapter<ItemRcmAdapter.ItemViewHolder> {
-    private List<ItemRcm> aListItemRCM;
+    private ArrayList<Product> aListItemRCM;
+    private onClickItem onClickItemListener;
 
-    public ItemRcmAdapter(List<ItemRcm> aListItemRCM) {
+    public ItemRcmAdapter(ArrayList<Product> aListItemRCM, onClickItem itemListener ) {
         this.aListItemRCM = aListItemRCM;
+        this.onClickItemListener = itemListener;
     }
 
     @NonNull
@@ -30,14 +32,23 @@ public class ItemRcmAdapter extends RecyclerView.Adapter<ItemRcmAdapter.ItemView
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        ItemRcm item = aListItemRCM.get(position);
+        Product item = aListItemRCM.get(position);
         if (item == null)
             return;
-        Glide.with(holder.aitrcmpict.getContext()).load(item.getItrcmpict()).into(holder.aitrcmpict);
-        holder.aitrcmname.setText(item.getItrcmname());
-        holder.aitrcmprice.setText(item.getItrcmprice());
+//        Glide.with(context).load(item.getItfvpict()).into(holder.aitfvpict);
+        holder.aitrcmname.setText(item.getName());
+        holder.aitrcmprice.setText(item.getPrice()+"");
+        Glide.with(holder.aitrcmpict.getContext()).load(item.getImage()).into(holder.aitrcmpict);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickItemListener.onClickToDetail(item.getName(),item.getPrice(),item.getDescription(),item.getImage());
+            }
+        });
     }
-
+    public interface onClickItem{
+        void onClickToDetail(String name, int price, String description, String picture);
+    }
     @Override
     public int getItemCount() {
         if(aListItemRCM != null){
@@ -73,7 +84,7 @@ public class ItemRcmAdapter extends RecyclerView.Adapter<ItemRcmAdapter.ItemView
             });
         }
     }
-    public void add(ItemRcm itemRcm) {
+    public void add(Product itemRcm) {
         aListItemRCM.add(itemRcm);
         notifyDataSetChanged();
     }

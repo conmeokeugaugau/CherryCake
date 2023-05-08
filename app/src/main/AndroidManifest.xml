@@ -12,8 +12,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CherryCake"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
+        <activity
+            android:name=".HoanThanhActivity"
+            android:exported="false" />
         <activity
             android:name=".ProductActivity"
             android:exported="false" />
@@ -47,7 +50,11 @@
             android:exported="false" />
         <activity
             android:name=".HomeActivity"
-            android:exported="false" />
+            android:exported="false" >
+
+        </activity>
+        <activity android:name=".UserInfoActivity"
+            android:exported="false"/>
         <activity
             android:name=".VoucherActivity"
             android:exported="false" />

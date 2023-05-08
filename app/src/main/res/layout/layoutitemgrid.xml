@@ -1,51 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="190dp"
+    android:layout_height="240dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="40dp"
+    android:backgroundTint="#EFEFEF"
+    android:layout_margin="10dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="10dp">
+    >
+
 
     <ImageView
+        android:layout_gravity="center"
         android:id="@+id/ivAvatar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="165dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="-24dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imgkhung"
-        android:layout_width="200dp"
-        android:layout_height="70dp"
-        android:background="@drawable/rectangle_bg_white_a700_border_black_900_33_radius_bl_20_br_20"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="195dp"
-        />
+        android:src="@drawable/ic_launcher_background"/>
 
     <TextView
         android:id="@+id/edtTenSP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="@id/imgkhung"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toTopOf="@id/imgkhung"
+        android:layout_marginStart="12dp"
+
+        android:layout_marginTop="182dp"
+        android:textStyle="bold"
         android:text="Ten"/>
+
+
     <TextView
         android:id="@+id/edtGiaSP"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        app:layout_constraintLeft_toLeftOf="@id/imgkhung"
-        android:layout_marginLeft="7dp"
-        app:layout_constraintTop_toTopOf="@id/imgkhung"
+        android:textStyle="bold"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="205dp"
         android:text="Loai"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

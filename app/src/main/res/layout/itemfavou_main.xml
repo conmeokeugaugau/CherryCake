@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="200dp"
-    android:layout_height="230dp"
+    android:layout_width="210dp"
+    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginRight="25dp">
 
     <ImageView
         android:id="@+id/itfvbgr"
         android:layout_width="170dp"
-        android:layout_height="230dp"
+        android:layout_height="250dp"
         android:background="@drawable/roundnotselect"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -18,20 +18,21 @@
         android:id="@+id/itfvpict"
         android:layout_width="125dp"
         android:layout_height="140dp"
-        android:layout_marginTop="56dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="80dp"
         android:background="@drawable/roundnotselect"
         android:scaleType="fitCenter"
-        />
+        android:layout_marginLeft="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/itfvname"
-        android:layout_width="wrap_content"
+        android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="Hoa cúc"
+        android:text="Bk socola socola"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="10dp"
@@ -40,7 +41,7 @@
         android:id="@+id/itfvprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/cake"
         android:text="30.000d"
         android:textStyle="bold"
         android:textSize="20dp"
@@ -56,8 +57,9 @@
         android:scaleType="fitCenter"
         android:src="@drawable/plus"
         android:background="@null"
+        android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="@id/itfvbgr"
-        app:layout_constraintBottom_toTopOf="@+id/itfvpict"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginLeft="155dp"
         android:layout_marginBottom="15dp"/>
 
@@ -66,8 +68,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itfvname">
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:layout_width="12dp"

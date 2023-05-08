@@ -1,16 +1,15 @@
 package com.example.cherrycake;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -21,50 +20,30 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductActivity extends AppCompatActivity implements ProductGridAdapter.ProductCallback{
 
+public class FavouriteFragmentActivity extends Fragment implements ProductGridAdapter.ProductCallback{
     RecyclerView rvListC;
     ArrayList<Product> lstProduct;
     ProductGridAdapter productGridAdapter;
+    View v;
 
-    DrawerLayout mdrawMenuPro;
-
-    FloatingActionButton mFloatButtonPro;
-
-    @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product);
-        rvListC = findViewById(R.id.rvGrid);
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        v = inflater.inflate(R.layout.fragment_product_activity, container, false);
         LoadData();
-        productGridAdapter = new ProductGridAdapter(lstProduct, this);
-        GridLayoutManager gridLayoutManager= new GridLayoutManager(this,2);
-        rvListC.setAdapter(productGridAdapter);
-        rvListC.setLayoutManager(gridLayoutManager);
-
-
-        // load menu
-        mdrawMenuPro = findViewById(R.id.drawmenuPro);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mdrawMenuPro, R.string.nav_menu_op, R.string.nav_menu_cl);
-        mdrawMenuPro.addDrawerListener(toggle);
-        toggle.syncState();
-
-        mFloatButtonPro = findViewById(R.id.btnFloatingProduct);
-        mFloatButtonPro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mdrawMenuPro.openDrawer(GravityCompat.START);
-            }
-        });
-
-
-
+        return v;
     }
     void LoadData() {
         lstProduct =new ArrayList<>();
         FirebaseFirestore.getInstance()
-                .collection("PRODUCTS")
+                .collection("FAVOURITES")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -77,10 +56,9 @@ public class ProductActivity extends AppCompatActivity implements ProductGridAda
                     }
                 });
     }
-
     @Override
     public void onItemClick(String ten, int gia, String mota, String anh) {
-        Intent i = new Intent(this, DetailActivity.class);
+        Intent i = new Intent(FavouriteFragmentActivity.this.getActivity(), DetailActivity.class);
         i.putExtra("ten",ten);
         i.putExtra("mota",mota);
         i.putExtra("gia",gia);
